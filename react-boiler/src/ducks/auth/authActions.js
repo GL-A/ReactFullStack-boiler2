@@ -1,28 +1,14 @@
 import axios from 'axios'
 export function signUp(signee){
-  console.log( signee )
-  return dispatch => {
-    dispatch({type: 'Loading'})
-    axios.post('/api/signup', signee).then(signInRes => {
-      console.log( signInRes)
-      dispatch({
-        type: 'AUTH_SUCCESS',
-        payload: signInRes
-      })
-    })
+  return{
+    type: 'SIGNUP',
+    payload: axios.post('/api/signup', signee)
   }
 }
 export function logIn(signee){
-  return dispatch => {
-    dispatch({type: 'Loading'})
-    axios.post('/api/login', signee).then(loginRes => {
-      dispatch({
-        type: 'AUTH_SUCCESS',
-        payload: loginRes
-      })
-    }).catch(err => {
-      dispatch({type: 'AUTH_ERROR'})
-    })
+  return{
+    type: 'LOGIN',
+    payload: axios.post('/api/login', signee)
   }
 }
 export function handlePasswordChange(payload) {

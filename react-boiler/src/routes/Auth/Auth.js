@@ -8,23 +8,22 @@ class Auth extends Component {
     };
   }
   render() {
-    const { email, password } = this.props
-    console.log( this.props.user );
     return(
       <div >
-
         <p>Nav here</p>
-        <button onClick={()=>this.props.logIn({email, password})}>Login</button>
-        <input value={email} onChange={(e)=> this.props.handleEmailChange(e.target.value)} placeholder="email" />
-        <input value={password} placeholder="password" onChange={(e)=> this.props.handlePasswordChange(e.target.value)} />
-        <button onClick={()=>this.props.signUp({email, password})}>Signup</button>
       </div>
     );
   }
 }
 
 export default connect(state => ({
-  password: state.auth.password,
-  email: state.auth.email,
-  user: state.auth.user
-}), { signUp, handlePasswordChange, handleEmailChange, logIn })(Auth);
+/*map state to props here examples
+  email: state.user.email,
+  address: state.user.address
+*/
+}), {
+  /*map dispatch to props examples
+  getEmail,
+  updateEmail
+  */
+})(Auth);

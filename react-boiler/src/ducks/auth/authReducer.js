@@ -1,7 +1,6 @@
 import axios from 'axios';
-const AUTH_SUCCESS = "AUTH_SUCCESS";
-const AUTH_ERROR = "AUTH_ERROR";
-const AUTH_LOADING = "Loading";
+const SIGNUP = "SIGNUP";
+const LOGIN = "LOGIN";
 const HANDLE_EMAIL_CHANGE = 'HANDLE_EMAIL_CHANGE';
 const HANDLE_PASSWORD_CHANGE = 'HANDLE_PASSWORD_CHANGE';
 const initialState = {
@@ -12,14 +11,13 @@ const initialState = {
 
 export  function auth(state = initialState, action) {
   switch (action.type) {
-    case AUTH_SUCCESS:
+    case SIGNUP+'FULFILLED':
       return Object.assign({}, state, {
         user: action.payload.data.user,
         email: '',
         password: ''
       })
-    case AUTH_ERROR:
-      console.log('in auth error reducer', state)
+    case SIGNUP+'REJECTED':
       return Object.assign({}, state, {failedAuth: true})
     case HANDLE_EMAIL_CHANGE:
       return Object.assign({}, state, {email: action.payload})
